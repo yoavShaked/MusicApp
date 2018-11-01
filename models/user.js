@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+const {songSchema} = require('./song');
 const env = require('dotenv');
 env.config();
+
 
 const userScehma = new mongoose.Schema({
     email: {
@@ -20,6 +22,10 @@ const userScehma = new mongoose.Schema({
         required: true,
         minlength:7,
         maxlength:100
+    },
+    songs:{
+        type:[songSchema],
+        default:[]
     }
 });
 

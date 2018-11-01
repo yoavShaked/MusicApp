@@ -26,7 +26,9 @@ router.post('/', async (request, response) => {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
-    response.send(user);
+
+    const token = user.genToken();
+    response.header('x-auth-token', token).send({name: user.name, email: user.email});
 });
 
 
