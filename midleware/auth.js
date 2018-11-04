@@ -3,7 +3,7 @@ const env = require('dotenv');
 env.config();
 
 module.exports = function(req, res, next){
-    const token = req.header('x-auth-token');
+    const token = req.body.token;
     if(!token){
         return res.status(400).send('No token provided');
     }
