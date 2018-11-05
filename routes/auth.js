@@ -3,9 +3,8 @@ const router = express.Router();
 const { User} = require('../models/user');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
-const auth = require('../midleware/auth');
 
-router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
 
     const { error } = validateAuth(request.body);
 
